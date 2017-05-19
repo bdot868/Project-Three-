@@ -74,7 +74,7 @@
                <% lists.forEach((list) => { %>
                   <% if (list.user.id == user.id) { %>
                     <a href="/lists/<%=list._id%>"><div class="user-lists">
-                      <h3 id="listss"> <%= list.title %> | City: <%= list.location.title %></h3>
+                      <h3 id="listss"> <%= list.title %>, <%= list.location.title %></h3>
                     </div></a>
                   <% } %>
                 <% }) %>
