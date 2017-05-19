@@ -22,16 +22,29 @@
   <meta property="fb:app_id" content="1848398465423039" />
   <meta property="fb:admins" content="591a41046a6e2842b1d6afca"/>
 
+  <style media="screen">
+    .listDeleteBtn{
+      display: inline
+    }
+  </style>
+
 </head>
  <body>
-			   <%-include partials/nav %>
+        <%if(isLoggedIn) {  %>
+        <%-include partials/new-list %>
+      <%} %>
+
+			   <%-include partials/nav1 %>
+
 
         <%if(!isLoggedIn) {  %>
-          <% include ./partials/login %>
-            <% include ./partials/signup %>
+          <% include partials/login %>
+            <% include partials/signup %>
         <% } %>
-  	<div class="container">
+
+  	<div class="container-fluid">
   		<%- body %>
+
   	</div>
 
     <script>
@@ -61,14 +74,72 @@
              fjs.parentNode.insertBefore(js, fjs);
            }(document, 'script', 'facebook-jssdk'));
        </script>
-          <div id="fb-root"></div>
-            <script>(function(d, s, id) {
-                  var js, fjs = d.getElementsByTagName(s)[0];
-                  if (d.getElementById(id)) return;
-                  js = d.createElement(s); js.id = id;
-                  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9&appId=1848398465423039";
-                  fjs.parentNode.insertBefore(js, fjs);
-                }(document, 'script', 'facebook-jssdk'));
-            </script>
+
+    <div id="fb-root"></div>
+       <script>(function(d, s, id) {
+             var js, fjs = d.getElementsByTagName(s)[0];
+             if (d.getElementById(id)) return;
+             js = d.createElement(s); js.id = id;
+             js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9&appId=1848398465423039";
+             fjs.parentNode.insertBefore(js, fjs);
+           }(document, 'script', 'facebook-jssdk'));
+       </script>
+<%if(isLoggedIn) { %>
+       <script type="text/javascript">
+         var newListModal = $('#newList')
+         var $newListButton = $('#new-list-button')
+         var locationDropdown = $('#location-dropdown')
+         var createList = $('#create-list')
+         var confirmList = $('#confirm-list')
+         var inputTitle = $('#list-title')
+         var locationID = []
+
+
+         $newListButton.on('click', function() {
+           console.log(inputTitle.val())
+
+           var requestSettings = {
+             method: 'GET',
+             url: '/api/locations'
+           }
+           $.ajax(requestSettings)
+            .done(function(locations){
+
+              locations.forEach(function(location){
+                var locationOption = $('<option value="' +location._id +'"> ').text(location.title)
+                // console.log(location._id)
+                locationDropdown.attr('value', location.title)
+                locationDropdown.append(locationOption)
+                locationID.push(location._id)
+              })
+                $('#newList').modal('show')
+            })
+            return locationID
+         })
+
+         console.log(locationID, locationDropdown);
+
+         confirmList.on('click', function(){
+           console.log(inputTitle.val())
+           console.log(locationDropdown.children().attr('value'), locationDropdown.prev().text())
+         })
+
+         createList.on('click', function(){
+
+           var requestSettings = {
+             method: 'post',
+             url: '/profile/<%= currentUser.id %>/lists',
+             data: JSON.stringify({title: inputTitle.val(), location: locationDropdown.val() }),
+             contentType: 'application/json'
+           }
+           $.ajax(requestSettings)
+              .done(function(data){
+              window.location='/lists'
+            })
+         })
+
+       </script>
+       <% } %>
+
 </body>
 </html>

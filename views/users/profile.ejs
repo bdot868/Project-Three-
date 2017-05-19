@@ -1,3 +1,4 @@
+
 <div class="page-header">
 
 
@@ -6,45 +7,40 @@
 
 </div>
 <div class="container">
+
+
 <div class="row">
     <div class="col-md-6">
         <div class="well">
 <!-- <p><%= user.local %></p>
-            <p>
-
-                <strong>password</strong>: <%= user.local.password %>
-            </p>
-
-            <p>
-                  <% if (user.facebook.id != null) { %>
-                  <h2 class="fa fa-facebook"> Facebook</h2><br>
-                  <img src="https://avatars.io/gravatar/<%= user.facebook.email %>/140" class="img-circle"><br>
-                  <strong>id</strong>: <%= user.facebook.id %><br>
-                  <strong>email</strong>: <%= user.facebook.email %><br>
-                  <strong>name</strong>: <%= user.facebook.name %>
-                  <% } %>
-            </p> -->
+      <p><strong>password</strong>: <%= user.local.password %></p>
+        <p><% if (user.facebook.id != null) { %>
+          <h2 class="fa fa-facebook"> Facebook</h2><br>
+          <img src="https://avatars.io/gravatar/<%= user.facebook.email %>/140" class="img-circle"><br>
+          <strong>id</strong>: <%= user.facebook.id %><br>
+          <strong>email</strong>: <%= user.facebook.email %><br>
+          <strong>name</strong>: <%= user.facebook.name %>
+          <% } %>
+        </p> -->
 
 
           <% if (user.local.email != null) { %>
             <div class="right-info">
             <h1><%= user.local.firstname %></h1>
             <img src="https://avatars.io/gravatar/<%= user.local.email %>/140" class="img-circle"><br>
+
           </div>
           <div class="left-info">
             <article class="user-info">
               <div class="user-info">
-              <strong>email</strong>:<br> <span><%= user.local.email %></span><br>
-            </div>
-            <div class="user-info">
-              <strong>First Name</strong>:<br> <span><%= user.local.firstname %></span><br>
-            </div>
-            <div class="user-info">
-              <strong>Last Name</strong>:<br> <span><%= user.local.lastname %></span><br>
-            </div>
-            <div class="user-info">
-              <strong>id</strong>:<br> <span><%= user._id %></span><br>
-            </div>
+                <strong>First Name</strong>:<br> <span><%= user.local.firstname %></span><br>
+              </div>
+              <div class="user-info">
+                <strong>Last Name</strong>:<br> <span><%= user.local.lastname %></span><br>
+              </div>
+              <div class="user-info">
+                <strong>email</strong>:<br> <span><%= user.local.email %></span><br>
+              </div>
             </article>
           </div>
           <% } %>
@@ -57,14 +53,13 @@
             </div>
             <div class="left-info">
               <article class="user-info">
-                <strong>id</strong>:<br> <span><%= user.id %></span><br>
+               <strong>name</strong>:<br> <span><%= user.facebook.name %></span>
                 <hr>
                 <strong>email</strong>:<br> <span><%= user.facebook.email %></span><br>
                 <hr>
-                <strong>name</strong>:<br> <span><%= user.facebook.name %></span>
-                <hr>
               </article>
             </div>
+
           <% } %>
 
         </div>

@@ -31,6 +31,7 @@ module.exports = {
         if(err){
           console.log(err)
         }else{
+
           var user_v = req.user
           var user_v_lists = req.user.lists
           var lists_pusher_function = function (array) {
@@ -41,6 +42,7 @@ module.exports = {
           // user_v.lists.push(newList)
 
           console.log(user_v_lists)
+
           // console.log(newList)
           res.redirect('/lists')
         }

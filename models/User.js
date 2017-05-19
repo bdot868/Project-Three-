@@ -19,6 +19,7 @@ const
     },
     isAdmin: {type: Boolean, default: false},
     lists: [{type: mongoose.Schema.Types.ObjectId, ref: 'List'}]
+
   })
 
   userSchema.methods.generateHash = function(password){

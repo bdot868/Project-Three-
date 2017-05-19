@@ -3,7 +3,7 @@ const
   mongoose = require('mongoose'),
   listRouter = express.Router(),
   List = require('../models/List.js'),
-  tasksController = require('../controllers/task.js')
+  tasksController = require('../controllers/task.js'),
   listsController = require('../controllers/list.js')
 //routes for the list
 listRouter.route('/')

@@ -1,36 +1,42 @@
-<div >
-<h3><%= list.title%></h3>
+<div class="col-md-6 col-md-offset-3" >
 
-<h6>By: <%= list.user.local.firstname %> <%= list.user.facebook.name%></h6>
 
-<%= list.location.title %> | <%= list.type%> | <%= list.weather%>
+<h1><%= list.title%></h1>
+<h3>By: <%= list.user.local.firstname %></h3>
+
+
+<h4><%= list.location.title %> </h4>
 <!-- if user is list creator or an admin then they can edit or delete lists -->
 <%if(currentUser.id ==list.user.id || currentUser.local.isAdmin) { %>
-</div>
 
-
-
+    <div class="col-sm-4">
       <!-- edit the list name, location, weather, type -->
       <button type="button" name="button"><a href="/lists/<%= list.id %>/edit">Edit</a></button>
       <!-- delete the entire lists with tasks and all -->
-      <form class="deleteBTN" method="post" action="/lists/<%=list.id %>?_method=DELETE" >
+
+
+      <form method="post" action="/lists/<%=list.id %>?_method=DELETE" class="listDeleteBtn">
+
         <button type="submit" name="button">Delete</button>
       </form>
+    </div>
 
+    <div class="col-sm-6">
 
-
-      <input type="text" id="task-input">
-      <button id="add-task"> Add </button>
-
-
+    <input type="text" id="task-input">
+    <button class="display-inline"id="add-task"> Add </button>
+  </div>
 
 
 <% }else{ %>
+  <div class="col-sm-10">
 
     <button id="clone-list">Copy List</button>
+  </div>
+
 <% } %>
 
-<ul class="list-group col-sm-6" id="tasks-list">
+<ul class="list-group col-sm-12" id="tasks-list">
 
   <li></li>
 
@@ -42,14 +48,11 @@
 <!--Script tag with ejs to add tasks if the user is logged in???  -->
 <%if(currentUser.id ==list.user.id || currentUser.local.isAdmin == true) { %>
 
-
+</div>
 <script>
   var tasksList = $('#tasks-list')
   var taskInput = $('#task-input')
   var addTask = $('#add-task')
-
-
-
 
   ///append all tasks to the list
   function appendTask(task){
@@ -150,7 +153,7 @@
       })
   })
 </script>
-<% } else {%>
+<%} else {%>
 
   <script >
 
@@ -179,14 +182,14 @@
 
 
   cloneList.on('click', function(){
-    console.log('before:', '<%= list._id%>', '<%=list.user%>')
+
     var requestSettings = {
       method: 'GET',
       url: '/lists/<%=list.id%>/copy/<%=currentUser.id%>',
 
     }
     $.ajax(requestSettings).done(function(theList){
-      // console.log(theList);
+
       window.location='/lists'
     })
   })

@@ -6,6 +6,7 @@ module.exports = {
   index: (req, res) => {
     List.findById(req.params.id, (err, list) => {
       var task = list.task
+      console.log(task)
       res.json(task)
     })
   },

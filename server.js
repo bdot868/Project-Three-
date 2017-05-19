@@ -1,6 +1,8 @@
 const
   express = require('express'),
   app = express(),
+  path = require('path'),
+  expressPartial = require('express-partial')
   mongoose = require('mongoose'),
   logger = require('morgan'),
   bodyParser = require('body-parser'),
@@ -41,6 +43,7 @@ const
   app.use(flash())
 
   // ejs configuration
+  app.set('views', path.join(__dirname, 'views'));
   app.set('view engine', 'ejs')
   app.use(methodOverride('_method'))
   app.use(ejsLayouts)
@@ -73,6 +76,8 @@ const
   app.use('/lists', listRoutes)
   app.use('/locations', locationRoutes)
   app.use('/api', apiRoutes)
+
+
 
   app.listen(port, (err) => {
   	console.log(err || `Server listening on port ${port}. 🤘`)

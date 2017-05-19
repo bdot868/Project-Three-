@@ -1,7 +1,8 @@
 const
   Location = require('../models/Location.js'),
   List = require('../models/List.js'),
-  User = require('../models/User.js')
+  User = require('../models/User.js'),
+  Task = require('../models/List.js')
 
 module.exports = {
   //Showing all locations
@@ -16,6 +17,7 @@ module.exports = {
     Location.findById(req.params.id, (err, location) => {
       List.find({}).populate('location user').exec((err,lists) =>{
         if(err) return console.log(err)
+        console.log(lists.task)
         res.render('locations/show', {location:location, lists:lists})
       })
     })
