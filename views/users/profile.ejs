@@ -74,7 +74,7 @@
                <% lists.forEach((list) => { %>
                   <% if (list.user.id == user.id) { %>
                     <a href="/lists/<%=list._id%>"><div class="user-lists">
-                      <h3> <%= list.title %> | City: <%= list.location.title %></h3>
+                      <h3 id="listss"> <%= list.title %> | City: <%= list.location.title %></h3>
                     </div></a>
                   <% } %>
                 <% }) %>
@@ -129,7 +129,7 @@
    .btn {
      margin-bottom: 20px;
    }
-   h2 {
+   .listss {
      padding-left: 200px;
    }
    .container-1 {

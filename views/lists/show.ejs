@@ -46,7 +46,7 @@
 
 <div class="fb-comments" data-href="https://travelpackr.herokuapp.com/lists/<%=list.id %>" data-numposts="2"></div>
 <!--Script tag with ejs to add tasks if the user is logged in???  -->
-<%if(currentUser.id ==list.user.id || currentUser.local.isAdmin == true) { %>
+<%if(currentUser.id ==list.user.id || currentUser.isAdmin == true) { %>
 
 </div>
 <script>
