@@ -57,8 +57,8 @@ passport.use('local-login', new LocalStrategy({
 passport.use(new FacebookStrategy({
   clientID: process.env.Facebook_clientID,
   clientSecret: process.env.Facebook_clientSecret,
-  //callbackURL: "https://travelpackr.herokuapp.com/auth/facebook/callback",
-   callbackURL: "http://localhost:3000/auth/facebook/callback",
+  callbackURL: "https://travelpackr.herokuapp.com/auth/facebook/callback",
+   //callbackURL: "http://localhost:3000/auth/facebook/callback",
   profileFields: ['id', 'email', 'first_name', 'last_name']
 
 },
